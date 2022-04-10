@@ -3,11 +3,16 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import { engine } from 'express-handlebars';
 import path from 'path'
+import passport from 'passport'
+import session from 'express-session';
 
 import connectDB from './config/db.js'
 import router from './routes/index.js'
+import auth from './routes/auth.js'
+import passConfig from './config/passport.js'
 
 dotenv.config({ path: './config/config.env' })
+passConfig(passport)
 
 connectDB()
 
@@ -23,7 +28,17 @@ app.set('view engine', '.hbs');
 const __dirname = new URL('.', import.meta.url).pathname
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use('/', router)
+app.use('/auth', auth)
 
 const PORT = process.env.PORT
 
