@@ -5,6 +5,7 @@ import { engine } from 'express-handlebars';
 import path from 'path'
 import passport from 'passport'
 import session from 'express-session';
+import MongoStore from 'connect-mongo';
 
 import connectDB from './config/db.js'
 import router from './routes/index.js'
@@ -31,7 +32,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
 }))
 
 app.use(passport.initialize())
