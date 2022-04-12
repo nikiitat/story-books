@@ -1,11 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
-import { engine } from 'express-handlebars';
+import { engine } from 'express-handlebars'
 import path from 'path'
 import passport from 'passport'
-import session from 'express-session';
-import MongoStore from 'connect-mongo';
+import session from 'express-session'
+import MongoStore from 'connect-mongo'
 
 import connectDB from './config/db.js'
 import router from './routes/index.js'
@@ -23,8 +23,8 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
-app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs' }));
-app.set('view engine', '.hbs');
+app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs' }))
+app.set('view engine', '.hbs')
 
 const __dirname = new URL('.', import.meta.url).pathname
 app.use(express.static(path.join(__dirname, 'public')))
@@ -33,7 +33,7 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
 }))
 
 app.use(passport.initialize())

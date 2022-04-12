@@ -1,29 +1,29 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const UserSchema = new mongoose.Schema({
     googleId: {
         type: String,
-        required: true
+        required: true,
     },
     displayName: {
         type: String,
-        required: true
+        required: true,
     },
     firstName: {
         type: String,
-        required: true
+        required: true,
     },
     lastName: {
         type: String,
-        required: true
+        required: true,
     },
     image: {
-        type: String
+        type: String,
     },
     createdAt: {
         type: Date,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 })
 
 const User = mongoose.model('User', UserSchema)
