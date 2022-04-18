@@ -16,5 +16,6 @@ module.exports = {
         'indent': ['error', 4],
         'object-curly-spacing': [2, 'always'],
         'max-len': [2, 80, 4, { 'ignoreUrls': true }],
+        // 'comma-dangle': ['error', 'never']
     },
 }
