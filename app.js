@@ -12,6 +12,8 @@ import router from './routes/index.js'
 import auth from './routes/auth.js'
 import stories from './routes/stories.js'
 
+import { formatDate } from './utils/hbs.js'
+
 import passConfig from './config/passport.js'
 
 dotenv.config({ path: './config/config.env' })
@@ -28,7 +30,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
-app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs', helpers: { formatDate } }))
 app.set('view engine', '.hbs')
 
 const __dirname = new URL('.', import.meta.url).pathname
