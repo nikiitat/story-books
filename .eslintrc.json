@@ -12,7 +12,8 @@
     "rules": {
         "prettier/prettier": "error",
         "func-names": "off",
-        "require-jsdoc": "off"
+        "require-jsdoc": "off",
+        "camelcase": "off"
         // 'semi': ['error', 'never'],
         // 'quotes': ['error', 'single'],
         // 'indent': ['error', 4],

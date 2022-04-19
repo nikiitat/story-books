@@ -21,4 +21,18 @@ router.post('/', ensureAuth, async (req, res) => {
     }
 })
 
+router.get('/', ensureAuth, async (req, res) => {
+    try {
+        const stories = await Story.find({ status: 'public' })
+            .populate('user')
+            .sort({ craetedAt: 'desc' })
+            .lean()
+
+        res.render('stories/index', { stories })
+    } catch (err) {
+        console.log(err)
+        res.render('error/500')
+    }
+})
+
 export default router
