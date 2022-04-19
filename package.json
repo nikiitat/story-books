@@ -30,6 +30,11 @@
     "cross-env": "^7.0.3",
     "eslint": "^8.13.0",
     "eslint-config-google": "^0.14.0",
-    "nodemon": "^2.0.15"
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2"
   }
 }

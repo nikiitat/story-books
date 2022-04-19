@@ -30,18 +30,23 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
 
-app.engine('.hbs', engine({ defaultLayout: 'main', extname: '.hbs', helpers: { formatDate } }))
+app.engine(
+    '.hbs',
+    engine({ defaultLayout: 'main', extname: '.hbs', helpers: { formatDate } })
+)
 app.set('view engine', '.hbs')
 
 const __dirname = new URL('.', import.meta.url).pathname
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
-}))
+app.use(
+    session({
+        secret: 'keyboard cat',
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({ mongoUrl: process.env.MONGO_URI })
+    })
+)
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -52,6 +57,9 @@ app.use('/stories', stories)
 
 const PORT = process.env.PORT
 
-app.listen(PORT,
+app.listen(
+    PORT,
     console.log(
-        `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+        `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`
+    )
+)
